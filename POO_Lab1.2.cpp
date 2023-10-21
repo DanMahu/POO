@@ -6,7 +6,7 @@ struct Vector
 {
 	float* p = nullptr;
 	int nrElem;
-	bool isEmpty;
+	bool isEmpty; //true - nu sunt elemente in vector, false - sunt elemente in vector
 };
 
 void meniu(Vector& V);
@@ -71,30 +71,30 @@ void meniu(Vector &V)
 }
 void initializareVector(Vector &V)
 {
-	if (V.p != nullptr)
+	if (V.p != nullptr) //verifica daca vectorul nu a fost initializat
 	{
 		cout << "\nVectorul a fost deja initializat!\n\n";
-		return;
+		return; //intrerupe functia
 	}
 
 	int size;
-	while (true)
+	while (true) //bucla va rula la infinit pana nu se introdu un numar valid
 	{
 		cout << "\nIntrodu dimensiunea noului vector: ";
 		cin >> size;
 		if (size <= 0) cout << "\nAi introdus o dimensiune negativa sau egala cu 0! Introdu o dimeniune valida.\n";
-		else break;
+		else break; //la introducerea unui numar valid, bucla se intrerupe
 	}
 	
-	V.p = new float[size];
-	V.nrElem = size;
-	V.isEmpty = true;
+	V.p = new float[size]; //se aloca memorie pentru un vector de numere de tip float
+	V.nrElem = size; //se atribuie dimensiunea vectorului
+	V.isEmpty = true; //indica faptul ca vectorul este gol (fara elemente)
 	cout << "\nS-a initializat un vector cu dimensiunea " << V.nrElem << ".\n\n";
 }
 
 void introduceElementeVector(Vector &V)
 {
-	if (V.p == nullptr)
+	if (V.p == nullptr) //verifica daca vectorul a fost initializat
 	{
 		cout << "\nNu poti introduce elemente. Vectorul nu a fost initializat!\n\n";
 		return;
@@ -104,9 +104,9 @@ void introduceElementeVector(Vector &V)
 	for (int i = 0; i < V.nrElem; i++)
 	{
 		cout << "Elementul " << i + 1 << ": ";
-		cin >> V.p[i];
+		cin >> V.p[i]; //se citeste elementele de la tastatura
 	}
-	V.isEmpty = false;
+	V.isEmpty = false; //indica faptul ca vectorul are elemente
 	cout << "\nElementele au fost introduse in vector!\n\n";
 }
 
@@ -117,7 +117,7 @@ void afisareElementeVector(Vector& V)
 		cout << "\nNu poti afisa elemente. Vectorul nu a fost initializat!\n\n";
 		return;
 	}
-	else if (V.isEmpty == true)
+	else if (V.isEmpty == true) //verifica daca vectorul are elemente
 	{
 		cout << "\nVectorul nu are elemente.\n\n";
 		return;
@@ -126,7 +126,7 @@ void afisareElementeVector(Vector& V)
 	cout << "\nVectorul are urmatoarele elemente:\n";
 	for (int i = 0; i < V.nrElem; i++)
 	{
-		cout << "  " << V.p[i];
+		cout << "  " << V.p[i]; //afiseaza la ecran elementele vectorului
 	}
 	cout << "\n\n";
 }
@@ -138,18 +138,18 @@ void accesareElementeVector(Vector &V)
 		cout << "\nNu poti accesa elemente. Vectorul nu a fost initializat!\n\n";
 		return;
 	}
-	else if (V.isEmpty == true)
+	else if (V.isEmpty == true) //verifica daca vectorul are elemente
 	{
 		cout << "\nVectorul nu are elemente.\n\n";
 		return;
 	}
 	int index;
-	while (true)
+	while (true) //bucla ruleaza la infinit pana se introduce un index valid
 	{
 		cout << "\nIntrodu index-ul elementului pe care doriti sa-l accesati (0 - " << V.nrElem - 1 << "): ";
 		cin >> index;
 		if (index > V.nrElem - 1 || index < 0) cout << "\nElement inexistent! Introdu un index valid.\n";
-		else break;
+		else break; //opreste bucla in momentul cand se introduce un index valid
 	}
 	cout << "\nElementul de pe index-ul " << index << " este " << V.p[index] << ".\n\n";
 }
