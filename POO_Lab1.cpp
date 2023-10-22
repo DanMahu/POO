@@ -4,6 +4,7 @@
 #include <algorithm>
 using namespace std;
 const string fisier = "date_case.txt";
+//trebuie de creat un fisier in locatia programului
 
 struct Casa
 {
@@ -13,14 +14,14 @@ struct Casa
     int apartamente;
 };
 
-void meniu(Casa* C, int n);
-void afisareDate(Casa* C, int n);
-void adaugareStructura(Casa* C, int n);
-void modificareStructura(Casa* C, int n);
-void comparareApartamente(Casa* C, int n);
-void sortareEtaje(Casa* C, int n);
-void sortareAdrese(Casa* C, int n);
-void iesireProgram(Casa *C);
+void meniu(int n);
+void afisareDate(int n);
+void adaugareStructura(int n);
+void modificareStructura(int n);
+void comparareApartamente(int n);
+void sortareEtaje(int n);
+void sortareAdrese(int n);
+void iesireProgram();
 
 int main()
 {
@@ -38,17 +39,16 @@ int main()
         //pentru a obtine numarul total de structuri se imparte la 4
         n /= 4;
 
-        Casa *C = new Casa[n]; //aloca memorie dinamica unui vector de structuri de dimensiune n
-        meniu(C, n); //apeleaza meniul
+        meniu(n); //apeleaza meniul
     }
     else
     {
-        cout << "\nEroare la deschiderea fisierului.\n";
+        cout << "\nFisierul nu a putut fi deschis sau nu a fost creat.\n";
     }
     return 0;
 }
 
-void meniu(Casa *C, int n)
+void meniu(int n)
 {
     int option;
     cout << "1. Afiseaza elementele din fisier;"
@@ -62,34 +62,34 @@ void meniu(Casa *C, int n)
     cin >> option;
     switch (option)
     {
-        case 1: afisareDate(C, n);
-                meniu(C, n);
+        case 1: afisareDate(n);
+                meniu(n);
             break;
-        case 2: adaugareStructura(C, n);
+        case 2: adaugareStructura(n);
                 n++; //incrementeaza n cu 1, deoarece s-a adaugat o structura noua
-                meniu(C, n);
+                meniu(n);
             break;
-        case 3: modificareStructura(C, n);
-                meniu(C, n);
+        case 3: modificareStructura(n);
+                meniu(n);
             break;
-        case 4: comparareApartamente(C, n);
-                meniu(C, n);
+        case 4: comparareApartamente(n);
+                meniu(n);
             break;
-        case 5: sortareEtaje(C, n);
-                meniu(C, n);
+        case 5: sortareEtaje(n);
+                meniu(n);
             break;
-        case 6: sortareAdrese(C, n);
-                meniu(C, n);
+        case 6: sortareAdrese(n);
+                meniu(n);
             break;
-        case 7: iesireProgram(C);
+        case 7: iesireProgram();
             break;
         default: cout << "\nNu exista aceasta optiune. Incearca din nou.\n\n";
-                meniu(C, n);
+                meniu(n);
             break;
     }
 }
 
-void afisareDate(Casa *C, int n)
+void afisareDate(int n)
 {
     //deschide fisierul pentru citire
     ifstream ft(fisier, ios::in);
@@ -122,7 +122,7 @@ void afisareDate(Casa *C, int n)
     cout << "\n";
 }
 
-void adaugareStructura(Casa* C, int n)
+void adaugareStructura(int n)
 {
     //deschide fisierul pentru adaugare (append)
     ofstream ft(fisier, ios::app);
@@ -154,7 +154,7 @@ void adaugareStructura(Casa* C, int n)
     cout << "\nStructura noua a fost adauga cu succes in fisier.\n\n";
 }
 
-void modificareStructura(Casa* C, int n)
+void modificareStructura(int n)
 {
     //creaza un array de structuri pentru a stoca temporar datele din fisier in memorie
     Casa* temp = new Casa[n];
@@ -230,7 +230,7 @@ void modificareStructura(Casa* C, int n)
     cout << "\n";
 }
 
-void comparareApartamente(Casa* C, int n)
+void comparareApartamente(int n)
 {
     ifstream ft(fisier, ios::in);
     if (!ft.is_open())
@@ -282,7 +282,7 @@ void comparareApartamente(Casa* C, int n)
     cout << "\n\n";
 }
 
-void sortareEtaje(Casa* C, int n)
+void sortareEtaje(int n)
 {
     //creaza un array de structuri pentru a stoca temporar datele din fisier in memorie
     Casa* temp = new Casa[n];
@@ -340,7 +340,7 @@ void sortareEtaje(Casa* C, int n)
     delete[] temp; //elibereaza memoria alocata
 }
 
-void sortareAdrese(Casa* C, int n)
+void sortareAdrese(int n)
 {
     //creaza un array de structuri pentru a stoca temporar datele din fisier in memorie
     Casa* temp = new Casa[n];
@@ -397,9 +397,8 @@ void sortareAdrese(Casa* C, int n)
     delete[] temp; //elibereaza memoria alocata
 }
 
-void iesireProgram(Casa* C)
+void iesireProgram()
 {
     cout << "\nProgramul se inchide...";
-    delete[] C; //elibereaza memoria alocata pentru vectorul de structuri C
     exit(0); //iesire din program (inchidere fara erori)
 }
