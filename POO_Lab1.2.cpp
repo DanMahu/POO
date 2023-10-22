@@ -99,6 +99,11 @@ void introduceElementeVector(Vector &V)
 		cout << "\nNu poti introduce elemente. Vectorul nu a fost initializat!\n\n";
 		return;
 	}
+	else if (V.isEmpty == false)
+	{
+		cout << "\nVectorul deja are elemente introduse!\n\n";
+		return;
+	}
 	
 	cout << "\nIntrodu " << V.nrElem << " elemente in vector:\n";
 	for (int i = 0; i < V.nrElem; i++)
