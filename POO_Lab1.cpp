@@ -16,7 +16,7 @@ struct Casa
 
 void meniu(int n);
 void afisareDate(int n);
-void adaugareStructura(int n);
+void adaugareStructura(int &n);
 void modificareStructura(int n);
 void comparareApartamente(int n);
 void sortareEtaje(int n);
@@ -66,7 +66,6 @@ void meniu(int n)
                 meniu(n);
             break;
         case 2: adaugareStructura(n);
-                n++; //incrementeaza n cu 1, deoarece s-a adaugat o structura noua
                 meniu(n);
             break;
         case 3: modificareStructura(n);
@@ -122,7 +121,7 @@ void afisareDate(int n)
     cout << "\n";
 }
 
-void adaugareStructura(int n)
+void adaugareStructura(int &n)
 {
     //deschide fisierul pentru adaugare (append)
     ofstream ft(fisier, ios::app);
@@ -151,6 +150,7 @@ void adaugareStructura(int n)
     ft << casaNoua.apartamente << endl;
 
     ft.close();
+    n++; //incrementeaza n cu 1, deoarece s-a adaugat o structura noua
     cout << "\nStructura noua a fost adauga cu succes in fisier.\n\n";
 }
 
