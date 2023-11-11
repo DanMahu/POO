@@ -16,6 +16,17 @@ class Image
         //constructor de initializare
         Image(string fileName, string compressionFormat, int width, int height, int fileSize, double compressionPercentage);
 
+        ~Image()
+        {
+            denumireFisier = "";
+            formatCompresie = "";
+            latime = NULL;
+            inaltime = NULL;
+            dimensiuneInOcteti = NULL;
+            procentajCompresie = NULL;
+            cout << "Destructor\n";
+        }
+
         //prototipurile functiilor de afisare si de schimbare a atributelor
         void afisareInfo();
         void schimbareDenumireFisier(const string& newFileName);
