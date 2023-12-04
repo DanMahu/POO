@@ -5,35 +5,35 @@ using namespace std;
 
 class Image
 {
-    private:
-        string denumireFisier;
-        string formatCompresie;
-        int latime, inaltime;
-        int dimensiuneInOcteti;
-        double procentajCompresie;
+private:
+    string denumireFisier;
+    string formatCompresie;
+    int latime, inaltime;
+    int dimensiuneInOcteti;
+    double procentajCompresie;
 
-    public:
-        //constructor de initializare
-        Image(string fileName, string compressionFormat, int width, int height, int fileSize, double compressionPercentage);
+public:
+    //constructor de initializare
+    Image(string fileName, string compressionFormat, int width, int height, int fileSize, double compressionPercentage);
 
-        ~Image()
-        {
-            denumireFisier = "";
-            formatCompresie = "";
-            latime = NULL;
-            inaltime = NULL;
-            dimensiuneInOcteti = NULL;
-            procentajCompresie = NULL;
-            cout << "Destructor\n";
-        }
+    ~Image()
+    {
+        denumireFisier = "";
+        formatCompresie = "";
+        latime = 0;
+        inaltime = 0;
+        dimensiuneInOcteti = 0;
+        procentajCompresie = 0.0;
+        //cout << "Destructor\n";
+    }
 
-        //prototipurile functiilor de afisare si de schimbare a atributelor
-        void afisareInfo();
-        void schimbareDenumireFisier(const string& newFileName);
-        void schimbareFormatCompresie(const string& newCompressionFormat);
-        void schimbareDimensiuni(int newWidth, int newHeight);
-        void schimbareDimensiuneInOcteti(int newFileSize);
-        void schimbareProcentajCompresie(double newCompressionPercentaje);
+    //prototipurile functiilor de afisare si de schimbare a atributelor
+    void afisareInfo();
+    void schimbareDenumireFisier(const string& newFileName);
+    void schimbareFormatCompresie(const string& newCompressionFormat);
+    void schimbareDimensiuni(int newWidth, int newHeight);
+    void schimbareDimensiuneInOcteti(int newFileSize);
+    void schimbareProcentajCompresie(double newCompressionPercentaje);
 };
 
 Image::Image(string fileName, string compressionFormat, int width, int height, int fileSize, double compressionPercentage)
